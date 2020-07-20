@@ -24,7 +24,7 @@ namespace online.dev4you
 		private static Random randomNumbers = new Random();
 
 		//number of cards in a deck
-		private const int NumberOfCards = 52;
+		private const int NumberOfCards = 51;
 		private Card[] deck = new Card[NumberOfCards];
 		//index of next Card to be dealt(0-51)
 		private int currentCard = 0;
@@ -34,9 +34,18 @@ namespace online.dev4you
 			"Seven", "Eight", "Nine", "Queen", "King" };
 			string[] suits = { "Hearts", "Diamonds", "Clubs", "Spades" };
 
-			for (var count = 0; count < deck.Length; ++count)
+			for (var count = 0; count <= deck.Length; ++count)
 			{
-				deck[count] = new Card(faces[count % 13], suits[count / 13]);
+                try
+                {
+					deck[count] = new Card(faces[count % 13], suits[count / 13]);
+				}
+                catch (IndexOutOfRangeException)
+                {
+					
+                    //////throw;
+                } 
+				
 			}
 		}
 		public void Shuffle()
